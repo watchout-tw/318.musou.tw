@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant-TW">
 <head>
-	<meta charset="utf-8">
-	<title>318</title>
-	<link rel="stylesheet" href="index.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta property="og:image" content="http://318.musou.tw/images/facebook-01.png"/>
+	<title>《318衝擊二週年　新･兩岸監督條例襲來》</title>
+	<link rel="stylesheet" href="css/index.css" />
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+	<script src="js/dataset.js"></script>
+	<script src="js/d3.js"></script>
+	<script src="js/index.js"></script>
 	<script type="text/javascript">var _jf = _jf || [];_jf.push(['_setAppId','ea28b00cwM2mUR9s8DlMdsIDSQ4JnMt6UvCpxk0esUXnmxpl23uQwzJLcQJcgCpDqkYRWyPF-1hP6O4vEqel4d7S3nE607UPHzXFE82dAYZYOSZYX1GbXf97x6pyOKgsiQk1oF5yuNBuYn0pZN-Pv7mAJgiLzfeohAgdFW-Rx7oqMCSeK-E=']);_jf.push(['p','40887']);_jf.push(['_setFont','xingothic-tc-w8','css','.xingothic-tc-w8']);_jf.push(['_setFont','xingothic-tc-w8','alias','xingothic-tc']);_jf.push(['_setFont','xingothic-tc-w8','weight',800]);(function(f,q,c,h,e,i,r,d){var k=f._jf;if(k.constructor===Object){return}var l,t=q.getElementsByTagName("html")[0],a=function(u){for(var v in k){if(k[v][0]==u){if(false===k[v][1].call(k)){break}}}},j=/\S+/g,o=/[\t\r\n\f]/g,b=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,g="".trim,s=g&&!g.call("\uFEFF\xA0")?function(u){return u==null?"":g.call(u)}:function(u){return u==null?"":(u+"").replace(b,"")},m=function(y){var w,z,v,u,x=typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):" ";if(z){u=0;while((v=w[u++])){if(z.indexOf(" "+v+" ")<0){z+=v+" "}}t[c]=s(z)}}},p=function(y){var w,z,v,u,x=arguments.length===0||typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):"";if(z){u=0;while((v=w[u++])){while(z.indexOf(" "+v+" ")>=0){z=z.replace(" "+v+" "," ")}}t[c]=y?s(z):""}}},n;k.push(["_eventActived",function(){p(h);m(e)}]);k.push(["_eventInactived",function(){p(h);m(i)}]);k.addScript=n=function(u,A,w,C,E,B){E=E||function(){};B=B||function(){};var x=q.createElement("script"),z=q.getElementsByTagName("script")[0],v,y=false,D=function(){x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;a("_eventInactived");B()};if(C){v=setTimeout(function(){D()},C)}x.type=A||"text/javascript";x.async=w;x.onload=x.onreadystatechange=function(G,F){if(!y&&(!x.readyState||/loaded|complete/.test(x.readyState))){y=true;if(C){clearTimeout(v)}x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;if(!F){setTimeout(function(){E()},200)}}};x.onerror=function(H,G,F){if(C){clearTimeout(v)}D();return true};x.src=u;z.parentNode.insertBefore(x,z)};a("_eventPreload");m(h);n(r,"text/javascript",false,3000)})(this,this.document,"className","jf-loading","jf-active","jf-inactive","//d3gc6cgx8oosp4.cloudfront.net/js/stable/v/4.9.4/id/165912760525");</script>
 </head>
 <body>
-    <h1>新･兩岸監督條例、襲來</h1>
+	<div id="space"></div>
+	<section id="cover">
+		<div class="cover" style="background-image: url('images/graphics_open.svg');"></div>
+		<div class="watchout-logotype"></div>
+		<p id="opening"><span class="emphasis">318衝擊</span>至今將滿兩年，還記得當時在街頭上的種種帶給你的震撼嗎？兩年的時間，從街頭到立院，兩岸監督條例遲遲難產。<span class="emphasis">新國會降臨</span>不久後的今天，又將面臨新的衝擊。你，準備好面對<span class="emphasis">黨版、襲來</span>了嗎？</p>
+	</section>
+	<section id="street"></section>
+	<section id="legislature">
+		<div class="cover wide" style="background-image: url('images/graphics_legislature_perspective.svg');"></div>
+		<div class="cover" style="background-image: url('images/graphics_timelines.svg');"></div>
+		<div id="timelineTitles"></div>
+		<div id="timelines">
+			<div id="eventDetail"><a target="_blank"><div class="thumbnail"></div><time></time><h3></h3></a><div class="close"></div></div>
+		</div>
+
+	</section>
+	<section id="now">
+		<div class="cover" style="background-image: url('images/graphics_newCongress.svg');"></div>
+		<div class="cover short" style="background-image: url('images/graphics_20160311.svg');"></div>
+		<p>第九屆新國會已啟動逾一個月，不少立委也提出了自己版本的「兩岸協議監督條例」，目前已有李俊俋、尤美女、蘇巧慧、李應元及時代力量黨團完成提案，加上行政院提案共有六個版本在立法院待審中；然而，法案中的許多關鍵條文，如兩岸定位、協商及審議時的資訊公開程度、國會的參與程度，及是否交由全民公投決議兩岸重大協議等等，各版本皆有所差異⋯</p>
+		<div id="chart"></div>
+	</section>
+	<section id="update">
+		<div class="cover" style="background-image: url('images/graphics_partyVersionAttack.svg');"></div>
+		<div class="cover short" style="background-image: url('images/graphics_20160317.svg');"></div>
+		<p>據傳民進黨將於三月底推出黨版「兩岸協議監督條例」，而李俊俋及李應元兩位民進黨籍立委也因種種原因撤回自己的提案，僅剩蘇巧慧和尤美女的版本倖存，「黨版、襲來」到底會造成什麼樣的空前危機呢？民進黨版的兩岸定位、協商及審議時的資訊公開程度、國會的參與程度，或是是否能讓全民公投把關都成未知數，可能都將帶來三一八後立法院的第二次衝擊。</p>
+	</section>
+	<footer>
+		<div id="share"><a href="http://www.facebook.com/sharer/sharer.php?u=http://318.musou.tw/"><img src="images/graphics_share.svg" /></a></div>
+		<ul id="credits">
+			<li>部分報導內容取自<a href="http://civilmedia.tw" target="_blank">公民行動影音紀錄資料庫</a></li>
+			<li>平面設計靈感來自<a href="https://zh.wikipedia.org/wiki/新世紀福音戰士" target="_blank">新世紀福音戰士</a></li>
+			<li>This page is licensed under a CC BY-SA 4.0 International license by Watchout Co., 2016</li>
+	</footer>
+	<div class="watchout-logotype"></div>
+	<nav>
+		<ul>
+			<li id="firstImpact" data-target="street"></li>
+			<li id="newCongress" data-target="now"></li>
+			<li id="partyVersionAttack" data-target="update"></li>
+		</ul>
+	</nav>
 </body>
 </html>

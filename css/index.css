@@ -1,0 +1,362 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 320px;
+  font-family: "Helvetica Neue", "PingFang TC", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background: #eee; }
+
+ol, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+h1, h2 {
+  font-family: xingothic-tc, "Helvetica Neue", "PingFang TC", sans-serif; }
+
+h3 {
+  font-weight: normal; }
+
+a, a:hover, a:active, a:visited {
+  color: blue;
+  text-decoration: none; }
+
+span.emphasis {
+  font-weight: bold; }
+
+section#cover {
+  display: block;
+  padding-bottom: 2em; }
+  section#cover > #cover-image {
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background-image: url("../images/graphics_open.svg");
+    background-size: contain; }
+  section#cover > #title {
+    margin: 4em 0; }
+    section#cover > #title > #pre {
+      width: 10em;
+      margin: 1em auto;
+      padding: 0.5em 1em;
+      background: #0f0f0f;
+      color: #f0f0f0;
+      text-align: center; }
+    section#cover > #title > h1 {
+      font-size: 4em;
+      margin: 0;
+      padding: 0.5em 0.2em 0;
+      text-align: center; }
+
+section > .cover {
+  position: relative;
+  margin: 0 auto;
+  width: 320px;
+  height: 320px;
+  border: 1px solid #555;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat; }
+  section > .cover:before, section > .cover:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 462.4573px;
+    height: 1px;
+    background: #555;
+    transform: rotate(45deg);
+    transform-origin: top left; }
+  section > .cover:after {
+    transform: rotate(-45deg);
+    transform-origin: top left;
+    top: 100%; }
+  section > .cover > label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; }
+section > .cover.short {
+  height: 88px;
+  border: none; }
+  section > .cover.short:before, section > .cover.short:after {
+    content: none; }
+section > .cover.wide {
+  width: 100%;
+  max-width: 640px;
+  background-color: #fff; }
+  section > .cover.wide:before, section > .cover.wide:after {
+    content: none; }
+section > p {
+  width: 18em;
+  margin: 1.5em auto;
+  line-height: 1.5; }
+
+section#street {
+  padding-top: 10em;
+  background-image: url("../images/graphics_street.svg");
+  background-position: center center;
+  background-repeat: repeat-y; }
+  section#street > .chapter {
+    padding: 5em 0; }
+    section#street > .chapter > .card {
+      margin: 0 auto;
+      padding-bottom: 0.5em;
+      background: #4d4d4d;
+      color: #f0f0f0;
+      cursor: pointer; }
+      section#street > .chapter > .card > h2 {
+        display: none;
+        font-size: 2.5em;
+        margin: 0;
+        text-align: center; }
+      section#street > .chapter > .card > .title {
+        width: 100%;
+        height: 88px;
+        background-size: cover; }
+      section#street > .chapter > .card > .description {
+        margin: 0 auto;
+        width: 19em; }
+    section#street > .chapter > .expand {
+      background: #4d4d4d;
+      text-align: center; }
+      section#street > .chapter > .expand > button {
+        -webkit-appearance: none;
+        width: 100%;
+        font-size: 1em;
+        margin: 0;
+        padding: 0.5em 1em;
+        border: none;
+        background: #000;
+        color: #f0f0f0;
+        cursor: pointer; }
+    section#street > .chapter > .reports {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+      max-width: 600px;
+      margin: 3em auto;
+      padding: 2em; }
+      section#street > .chapter > .reports > .report {
+        position: relative;
+        display: block;
+        flex: 1 1 80px;
+        margin: 1px;
+        margin-bottom: 1.5em;
+        border: 3px solid #aaa;
+        border-radius: 3px; }
+        section#street > .chapter > .reports > .report > .thumbnail {
+          display: block;
+          width: 100%;
+          height: 0%;
+          padding-bottom: 55%;
+          background-color: #ccc;
+          background-size: 200%;
+          background-position: center center; }
+        section#street > .chapter > .reports > .report > time, section#street > .chapter > .reports > .report > h3 {
+          margin: 0;
+          background: #fff;
+          color: #000; }
+        section#street > .chapter > .reports > .report > time {
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 0.25em 0.5em;
+          font-size: 0.8em;
+          font-weight: bold;
+          line-height: 1.0; }
+        section#street > .chapter > .reports > .report > h3 {
+          display: none;
+          position: absolute;
+          bottom: 0;
+          max-width: 15em;
+          padding: 0.5em;
+          font-size: inherit; }
+  section#street > .chapter.expanded > .reports > .report {
+    flex: 1 1 200px; }
+    section#street > .chapter.expanded > .reports > .report > .thumbnail {
+      background-size: 100%; }
+    section#street > .chapter.expanded > .reports > .report > h3 {
+      display: block; }
+
+section#legislature > h2, section#now > h2 {
+  margin: 0;
+  padding: 1em 0.5em;
+  font-size: 2em;
+  text-align: center; }
+
+section#update > h2 {
+  font-size: 2em;
+  margin: 0;
+  text-align: center;
+  line-height: 1.0; }
+
+#timelineTitles {
+  display: flex; }
+  #timelineTitles > .title {
+    flex: 1 1 6em;
+    padding: 0.5em;
+    color: #f0f0f0;
+    text-align: center; }
+
+svg {
+  display: block;
+  margin: 0 auto;
+  font-size: 12px; }
+
+#timelines {
+  position: relative;
+  background-image: url("../images/graphics_timelines_background.svg");
+  background-position: center center;
+  background-repeat: repeat-y; }
+  #timelines > svg > g.event {
+    cursor: pointer; }
+  #timelines > #eventDetail {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 320px;
+    border: 3px solid #aaa;
+    border-radius: 3px; }
+    #timelines > #eventDetail > a {
+      display: block; }
+      #timelines > #eventDetail > a > .thumbnail {
+        width: 100%;
+        height: 0%;
+        padding-bottom: 55%;
+        background-color: #ccc;
+        background-size: 150%;
+        background-position: center center; }
+      #timelines > #eventDetail > a > time, #timelines > #eventDetail > a > h3 {
+        margin: 0;
+        background: #fff;
+        color: #000; }
+      #timelines > #eventDetail > a > time {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.25em 0.5em;
+        font-size: 0.8em;
+        font-weight: bold;
+        line-height: 1.0; }
+      #timelines > #eventDetail > a > h3 {
+        position: absolute;
+        bottom: 0;
+        max-width: 15em;
+        padding: 0.5em;
+        font-size: inherit; }
+    #timelines > #eventDetail > .close {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      overflow: hidden; }
+      #timelines > #eventDetail > .close:before, #timelines > #eventDetail > .close:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        top: -1px;
+        width: 80px;
+        height: 2px;
+        background: #000; }
+      #timelines > #eventDetail > .close:before {
+        left: 0;
+        transform-origin: top left;
+        transform: rotate(45deg); }
+      #timelines > #eventDetail > .close:after {
+        right: 0;
+        transform-origin: top right;
+        transform: rotate(-45deg); }
+
+#timelines.showEventDetail > #eventDetail {
+  display: block; }
+
+#chart {
+  margin: 0; }
+  #chart > svg > g.proposal {
+    cursor: pointer; }
+    #chart > svg > g.proposal > .value > text {
+      display: none; }
+  #chart > svg.focusOn > g.proposal {
+    opacity: 0.15; }
+  #chart > svg.focusOn > g.proposal.focused {
+    opacity: 1.0; }
+    #chart > svg.focusOn > g.proposal.focused > .value > text {
+      display: block; }
+
+footer {
+  position: relative;
+  margin-top: 10em;
+  background: #ccc; }
+  footer:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: -5em;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5em;
+    height: 2px;
+    background: #000; }
+  footer > #share img {
+    display: block; }
+  footer > #credits {
+    margin: 0 auto;
+    padding: 0.5em 0;
+    width: 19em;
+    text-align: left; }
+    footer > #credits a {
+      display: inline-block; }
+
+.watchout-logotype {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  background-image: url("../images/graphics_watchout.svg");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat; }
+
+#space {
+  height: 88px; }
+
+nav {
+  display: block;
+  position: fixed;
+  top: 0;
+  width: 320px;
+  color: #f0f0f0;
+  background: #0f0f0f;
+  line-height: 1.0; }
+  nav > ul {
+    display: flex;
+    justify-content: space-around; }
+    nav > ul > li {
+      flex: 1 1 100px;
+      background-image: url("../images/graphics_nav.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 88px;
+      cursor: pointer; }
+      nav > ul > li#firstImpact {
+        background-position: 0 0; }
+      nav > ul > li#newCongress {
+        background-position: -106.66667px 0; }
+      nav > ul > li#partyVersionAttack {
+        background-position: -213.33333px 0; }
+
+/*# sourceMappingURL=index.css.map */
