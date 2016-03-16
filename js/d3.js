@@ -164,7 +164,7 @@ var drawChart = function() {
 				});
 			g.append('text').text(d)
 				.attr({
-					'x': 0,
+					'x': 4,
 					'y': yScale(i) - nodeR,
 				})
 		});
