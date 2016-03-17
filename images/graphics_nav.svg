@@ -24,10 +24,6 @@
 	</g>
 </g>
 <g id="backgrounds">
-	<rect y="0" fill="#808080" width="100" height="88"/>
-	<rect x="110" y="0" fill="#808080" width="100" height="88"/>
-	<rect x="220" y="0" fill="#808080" width="100" height="88"/>
-	<rect y="0" width="320" height="88"/>
 </g>
 <g id="stripes">
 </g>

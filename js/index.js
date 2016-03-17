@@ -5,7 +5,7 @@ var w = window,
     ww = w.innerWidth || e.clientWidth || g.clientWidth,
     wh = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
-var $street, $legislature, $timlines, $eventDetail, $chart;
+var $window, $body, $progress, $street, $legislature, $timlines, $eventDetail, $chart;
 
 var getThumbnailURL = function(data) {
 	if(data.thumbnailFilePath) {
@@ -102,4 +102,11 @@ $(function() {
 	});
 	drawTimelines();
 	drawChart();
+
+	$window = $(window);
+	$body = $('body');
+	$progress = $('#progress');
+	$window.scroll(function() {
+		$progress.width($window.scrollTop()/($body.height() - $window.height())*100 + '%');
+	});
 });

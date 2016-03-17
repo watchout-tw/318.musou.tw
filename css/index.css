@@ -111,8 +111,7 @@ section#street {
       margin: 0 auto;
       padding-bottom: 0.5em;
       background: #4d4d4d;
-      color: #f0f0f0;
-      cursor: pointer; }
+      color: #f0f0f0; }
       section#street > .chapter > .card > h2 {
         display: none;
         font-size: 2.5em;
@@ -340,7 +339,7 @@ nav {
   top: 0;
   width: 320px;
   color: #f0f0f0;
-  background: #0f0f0f;
+  background: #000;
   line-height: 1.0; }
   nav > ul {
     display: flex;
@@ -358,5 +357,21 @@ nav {
         background-position: -106.66667px 0; }
       nav > ul > li#partyVersionAttack {
         background-position: -213.33333px 0; }
+
+#progress {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 0;
+  max-width: 320px;
+  height: 88px;
+  background: rgba(255, 0, 0, 0.5);
+  background: -moz-linear-gradient(left, rgba(255, 0, 0, 0.06) 0%, red 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 0, 0, 0.06)), color-stop(100%, red));
+  background: -webkit-linear-gradient(left, rgba(255, 0, 0, 0.06) 0%, red 100%);
+  background: -o-linear-gradient(left, rgba(255, 0, 0, 0.06) 0%, red 100%);
+  background: -ms-linear-gradient(left, rgba(255, 0, 0, 0.06) 0%, red 100%);
+  background: linear-gradient(to right, rgba(255, 0, 0, 0.06) 0%, red 100%); }
 
 /*# sourceMappingURL=index.css.map */

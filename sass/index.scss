@@ -2,12 +2,10 @@
 @function sqrt($r) {
 	$x0: 1;
 	$x1: $x0;
-
 	@for $i from 1 through 10 {
 		$x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
 		$x0: $x1;
 	}
-
 	@return $x1;
 }
 
@@ -157,8 +155,6 @@ section#street {
 			padding-bottom: 0.5em;
 			background: $graphicsGrey;
 			color: $white;
-			//box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
-			cursor: pointer;
 			> h2 {
 				display: none;
 				font-size: 2.5em;
@@ -443,7 +439,7 @@ nav {
 	top: 0;
 	width: $maxW;
 	color: $white;
-	background: $black;
+	background: $trueBlack;
 	line-height: 1.0;
 
 	> ul {
@@ -470,4 +466,20 @@ nav {
 			}
 		}
 	}
+}
+#progress {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 0;
+	max-width: $maxW;
+	height: $navH;
+	background: rgba(255,0,0,0.5);
+	background: -moz-linear-gradient(left, rgba(255,0,0,0.06) 0%, rgba(255,0,0,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,0,0,0.06)), color-stop(100%, rgba(255,0,0,1)));
+	background: -webkit-linear-gradient(left, rgba(255,0,0,0.06) 0%, rgba(255,0,0,1) 100%);
+	background: -o-linear-gradient(left, rgba(255,0,0,0.06) 0%, rgba(255,0,0,1) 100%);
+	background: -ms-linear-gradient(left, rgba(255,0,0,0.06) 0%, rgba(255,0,0,1) 100%);
+	background: linear-gradient(to right, rgba(255,0,0,0.06) 0%, rgba(255,0,0,1) 100%);
 }
