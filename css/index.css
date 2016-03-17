@@ -332,8 +332,7 @@ svg {
 
 footer {
   position: relative;
-  margin-top: 10em;
-  background: #ccc; }
+  margin-top: 10em; }
   footer:before {
     content: ' ';
     display: block;
