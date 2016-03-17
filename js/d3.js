@@ -50,7 +50,7 @@ var drawTimelines = function() {
 	// now let us draw
 	var cw = ww;
 	var paddings = {top: 40, right: Math.round(cw/6), bottom: 40, left: Math.round(cw/6)};
-	var ch = (lastDay - firstDay)/1000*0.00004 + paddings.top + paddings.bottom;//months*step;
+	var ch = (lastDay - firstDay)/1000*0.00003 + paddings.top + paddings.bottom;//months*step;
 
 	var xScale = d3.scale.linear().domain([0, 2]).range([0 + paddings.left, cw - paddings.right]);
 	var yScale = d3.scale.linear().domain([firstDay.getTime()/1000, lastDay.getTime()/1000]).range([0 + paddings.top, ch - paddings.bottom]);
