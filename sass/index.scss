@@ -261,44 +261,28 @@ section#legislature, section#now {
 }
 section#legislature {
 	> ol {
-		$strokeW: 2px;
+		$strokeW: 3px;
 		position: relative;
-		height: 18.5em;
 		font-size: 13px;
 		> li {
-			position: absolute;
+			position: relative;
 			padding: 0.5em;
 			background: $trueWhite;
 			border: $strokeW solid $trueBlack;
 			border-radius: $strokeW;
 			box-sizing: content-box;
-
-			top: 12em;
-			left: 50%;
-			right: auto;
-			transform: translateX(-50%);
-			width: 13em;
-
 			&:before {
 				content: ' ';
 				display: block;
 				position: absolute;
 				width: $strokeW;
 				background: $trueBlack;
-
-				height: 13em;
-				top: -13em;
-				left: 50%;
-				right: auto;
+				z-index: -1;
 			}
 
-			&:first-child {
-				top: 1em;
-				left: 0;
-				right: auto;
-				transform: none;
+			&.left {
 				width: 13em;
-
+				margin-top: 1em;
 				&:before {
 					height: 2em;
 					top: -2em;
@@ -306,13 +290,19 @@ section#legislature {
 					right: auto;
 				}
 			}
-			&:last-child {
-				top: 5em;
-				left: auto;
-				right: 0;
-				transform: none;
+			&.middle {
+				width: 13em;
+				margin: -$strokeW auto 0;
+				&:before {
+					height: 13em;
+					top: -13em;
+					left: 50%;
+					right: auto;
+				}
+			}
+			&.right {
 				width: 10em;
-
+				margin: -2em 0 0 auto;
 				&:before {
 					height: 6em;
 					top: -6em;
@@ -347,7 +337,7 @@ svg {
 #timelines {
 	position: relative;
 	background-image: url('../images/graphics_timelines_background.svg');
-	background-position: center center;
+	background-position: top;
 	background-repeat: repeat-y;
 	> svg {
 		> g.event {

@@ -195,48 +195,41 @@ section#legislature > h2, section#now > h2 {
 
 section#legislature > ol {
   position: relative;
-  height: 18.5em;
   font-size: 13px; }
   section#legislature > ol > li {
-    position: absolute;
+    position: relative;
     padding: 0.5em;
     background: #fff;
-    border: 2px solid #000;
-    border-radius: 2px;
-    box-sizing: content-box;
-    top: 12em;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    width: 13em; }
+    border: 3px solid #000;
+    border-radius: 3px;
+    box-sizing: content-box; }
     section#legislature > ol > li:before {
       content: ' ';
       display: block;
       position: absolute;
-      width: 2px;
+      width: 3px;
       background: #000;
-      height: 13em;
-      top: -13em;
-      left: 50%;
-      right: auto; }
-    section#legislature > ol > li:first-child {
-      top: 1em;
-      left: 0;
-      right: auto;
-      transform: none;
-      width: 13em; }
-      section#legislature > ol > li:first-child:before {
+      z-index: -1; }
+    section#legislature > ol > li.left {
+      width: 13em;
+      margin-top: 1em; }
+      section#legislature > ol > li.left:before {
         height: 2em;
         top: -2em;
         left: 53.33333px;
         right: auto; }
-    section#legislature > ol > li:last-child {
-      top: 5em;
-      left: auto;
-      right: 0;
-      transform: none;
-      width: 10em; }
-      section#legislature > ol > li:last-child:before {
+    section#legislature > ol > li.middle {
+      width: 13em;
+      margin: -3px auto 0; }
+      section#legislature > ol > li.middle:before {
+        height: 13em;
+        top: -13em;
+        left: 50%;
+        right: auto; }
+    section#legislature > ol > li.right {
+      width: 10em;
+      margin: -2em 0 0 auto; }
+      section#legislature > ol > li.right:before {
         height: 6em;
         top: -6em;
         left: auto;
@@ -258,7 +251,7 @@ svg {
 #timelines {
   position: relative;
   background-image: url("../images/graphics_timelines_background.svg");
-  background-position: center center;
+  background-position: top;
   background-repeat: repeat-y; }
   #timelines > svg > g.event {
     cursor: pointer; }
