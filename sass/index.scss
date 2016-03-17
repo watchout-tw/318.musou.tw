@@ -186,9 +186,20 @@ section#street {
 			}
 		}
 		> .reports {
+			display: -ms-flex;
+			display: -webkit-flex;
 			display: flex;
+
+			-ms-flex-flow: row wrap;
+			-webkit-flex-flow: row wrap;
 			flex-flow: row wrap;
+
+			-ms-justify-content: space-around;
+			-webkit-justify-content: space-around;
 			justify-content: space-around;
+
+			-ms-align-items: flex-start;
+			-webkit-align-items: flex-start;
 			align-items: flex-start;
 
 			max-width: 600px;
@@ -198,6 +209,8 @@ section#street {
 			> .report {
 				position: relative;
 				display: block;
+				-ms-flex: 1 1 80px;
+				-webkit-flex: 1 1 80px;
 				flex: 1 1 80px;
 				margin: 1px;
 				margin-bottom: 1.5em;
@@ -240,6 +253,8 @@ section#street {
 	}
 	> .chapter.expanded {
 		> .reports > .report {
+			-ms-flex: 1 1 200px;
+			-webkit-flex: 1 1 200px;
 			flex: 1 1 200px;
 			> .thumbnail {
 				background-size: 100%;
