@@ -199,14 +199,6 @@ section#update > h2 {
   text-align: center;
   line-height: 1.0; }
 
-#timelineTitles {
-  display: flex; }
-  #timelineTitles > .title {
-    flex: 1 1 6em;
-    padding: 0.5em;
-    color: #f0f0f0;
-    text-align: center; }
-
 svg {
   display: block;
   margin: 0 auto;
@@ -342,9 +334,13 @@ nav {
   background: #000;
   line-height: 1.0; }
   nav > ul {
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     justify-content: space-around; }
     nav > ul > li {
+      -ms-flex: 1 1 100px;
+      -webkit-flex: 1 1 100px;
       flex: 1 1 100px;
       background-image: url("../images/graphics_nav.svg");
       background-size: cover;

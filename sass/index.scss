@@ -272,15 +272,6 @@ section#update {
 		line-height: 1.0;
 	}
 }
-#timelineTitles {
-	display: flex;
-	> .title {
-		flex: 1 1 6em;
-		padding: 0.5em;
-		color: $white;
-		text-align: center;
-	}
-}
 svg {
 	display: block;
 	margin: 0 auto;
@@ -443,10 +434,14 @@ nav {
 	line-height: 1.0;
 
 	> ul {
+		display: -ms-flexbox;
+		display: -webkit-flex;
 		display: flex;
 		justify-content: space-around;
 		> li {
 			$itemW: 100;
+			-ms-flex: 1 1 #{$itemW}px;
+			-webkit-flex: 1 1 #{$itemW}px;
 			flex: 1 1 #{$itemW}px;
 			background-image: url('../images/graphics_nav.svg');
 			background-size: cover;
