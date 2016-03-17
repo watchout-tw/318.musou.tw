@@ -62,15 +62,18 @@ var drawTimelines = function() {
 			'height': ch,
 			'viewBox': '0 0 ' + cw + ' ' + ch,
 		});
+
+	// draw ticks each month
+	var ticks = svg.append('g').classed('ticks', true);
 	for(var i = firstDay; i < lastDay; i = new Date(i.setMonth(i.getMonth() + 1))) {
-		svg.append('circle').attr({
+		ticks.append('circle').attr({
 			'cx': cw/2,
 			'cy': yScale(i.getTime()/1000),
 			'r': 3,
 			'fill': 'rgba(0, 0, 0, 0.35)',
 		});
 	}
-	svg.append('circle').attr({
+	ticks.append('circle').attr({
 		'cx': cw/2,
 		'cy': yScale(lastDay.getTime()/1000),
 		'r': 3,
@@ -90,6 +93,7 @@ var drawTimelines = function() {
 			x += (overlapped ? 2*circleR : 0);
 			g.classed('shifted', overlapped)
 			g.append('circle')
+				.classed('clickable', true)
 				.attr({
 					'cx': x,
 					'cy': y,
@@ -98,13 +102,6 @@ var drawTimelines = function() {
 					'stroke': color,
 					'stroke-width': circleStrokeW,
 				});
-			/*g.append('text')
-				.text(d.time)
-				.attr({
-					'x': x,
-					'y': y + r + s + fontSize,
-					'text-anchor': 'middle',
-				});*/
 			last = {x: x, y: y};
 
 			g.on('click', function(d) {
@@ -179,6 +176,7 @@ var drawChart = function() {
 
 			// draw legend
 			g.append('circle')
+				.classed('clickable', true)
 				.attr({
 					'cx': xScale(i),
 					'cy': 40,

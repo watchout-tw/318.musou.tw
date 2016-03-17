@@ -276,6 +276,12 @@ svg {
 	display: block;
 	margin: 0 auto;
 	font-size: 12px;
+
+	circle.clickable {
+		&:hover {
+			fill: $trueBlack;
+		}
+	}
 }
 #timelines {
 	position: relative;

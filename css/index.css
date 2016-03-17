@@ -203,6 +203,8 @@ svg {
   display: block;
   margin: 0 auto;
   font-size: 12px; }
+  svg circle.clickable:hover {
+    fill: #000; }
 
 #timelines {
   position: relative;
