@@ -193,6 +193,55 @@ section#legislature > h2, section#now > h2 {
   font-size: 2em;
   text-align: center; }
 
+section#legislature > ol {
+  position: relative;
+  height: 18.5em;
+  font-size: 13px; }
+  section#legislature > ol > li {
+    position: absolute;
+    padding: 0.5em;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 2px;
+    box-sizing: content-box;
+    top: 12em;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 13em; }
+    section#legislature > ol > li:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      width: 2px;
+      background: #000;
+      height: 13em;
+      top: -13em;
+      left: 50%;
+      right: auto; }
+    section#legislature > ol > li:first-child {
+      top: 1em;
+      left: 0;
+      right: auto;
+      transform: none;
+      width: 13em; }
+      section#legislature > ol > li:first-child:before {
+        height: 2em;
+        top: -2em;
+        left: 53.33333px;
+        right: auto; }
+    section#legislature > ol > li:last-child {
+      top: 5em;
+      left: auto;
+      right: 0;
+      transform: none;
+      width: 10em; }
+      section#legislature > ol > li:last-child:before {
+        height: 6em;
+        top: -6em;
+        left: auto;
+        right: 53.33333px; }
+
 section#update > h2 {
   font-size: 2em;
   margin: 0;
@@ -282,6 +331,8 @@ svg {
     cursor: pointer; }
     #chart > svg > g.proposal > .value > text {
       display: none; }
+  #chart > svg > g.axis text {
+    font-weight: bold; }
   #chart > svg.focusOn > g.proposal {
     opacity: 0.15; }
   #chart > svg.focusOn > g.proposal.focused {

@@ -260,7 +260,68 @@ section#legislature, section#now {
 	}
 }
 section#legislature {
-	//background-color: #f02c00;
+	> ol {
+		$strokeW: 2px;
+		position: relative;
+		height: 18.5em;
+		font-size: 13px;
+		> li {
+			position: absolute;
+			padding: 0.5em;
+			background: $trueWhite;
+			border: $strokeW solid $trueBlack;
+			border-radius: $strokeW;
+			box-sizing: content-box;
+
+			top: 12em;
+			left: 50%;
+			right: auto;
+			transform: translateX(-50%);
+			width: 13em;
+
+			&:before {
+				content: ' ';
+				display: block;
+				position: absolute;
+				width: $strokeW;
+				background: $trueBlack;
+
+				height: 13em;
+				top: -13em;
+				left: 50%;
+				right: auto;
+			}
+
+			&:first-child {
+				top: 1em;
+				left: 0;
+				right: auto;
+				transform: none;
+				width: 13em;
+
+				&:before {
+					height: 2em;
+					top: -2em;
+					left: $maxW/6;
+					right: auto;
+				}
+			}
+			&:last-child {
+				top: 5em;
+				left: auto;
+				right: 0;
+				transform: none;
+				width: 10em;
+
+				&:before {
+					height: 6em;
+					top: -6em;
+					left: auto;
+					right: $maxW/6;
+				}
+			}
+		}
+	}
 }
 section#now {
 }
@@ -374,6 +435,11 @@ svg {
 		> g.proposal {
 			cursor: pointer;
 			> .value > text { display: none; }
+		}
+		> g.axis {
+			text {
+				font-weight: bold;
+			}
 		}
 		&.focusOn {
 			> g.proposal {
