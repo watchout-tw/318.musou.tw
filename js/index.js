@@ -7,15 +7,25 @@ var w = window,
 
 var $street, $legislature, $timlines, $eventDetail, $chart;
 
+var getThumbnailURL = function(data) {
+	if(data.thumbnailFilePath) {
+		return data.thumbnailFilePath;
+	}
+	else if(data.youtubeID) {
+		return 'https://img.youtube.com/vi/' + data.youtubeID + '/hqdefault.jpg'; //maxresdefault
+	}
+	else {
+		return 'none';
+	}
+}
+
 var updateEventDetail = function(data) {
 	var className = 'showEventDetail';
 	var $title = $eventDetail.find('h3');
 	if($title.text() != data.title || $timelines.hasClass(className) === false) {
 		$title.text(data.title);
 		$eventDetail.find('time').text(data.time);
-
-		var backgroundImage = data.youtubeID ? 'url(' + 'https://img.youtube.com/vi/' + data.youtubeID + '/hqdefault.jpg' + ')' : 'none';
-		$eventDetail.find('.thumbnail').css('background-image', backgroundImage);
+		$eventDetail.find('.thumbnail').css('background-image', 'url(' + getThumbnailURL(data) + ')');
 		$eventDetail.find('a').attr('href', data.link);
 
 		$timelines.addClass(className);
@@ -53,11 +63,7 @@ $(function() {
 			var report = data.reports[j];
 			if(report.chapter == chapter.id) {
 				var $report = $('<a>').attr({href: report.link, target: '_blank'}).addClass('report').appendTo($reports);
-				var $thumbnail = $('<div>').addClass('thumbnail').appendTo($report);
-				if(report.youtubeID) {
-					var url = 'https://img.youtube.com/vi/' + report.youtubeID + '/hqdefault.jpg'; //maxresdefault
-					$thumbnail.attr('style', 'background-image: url(' + url + ')');
-				}
+				$('<div>').addClass('thumbnail').appendTo($report).attr('style', 'background-image: url(' + getThumbnailURL(data.reports[j]) + ')');
 				$('<time>').text(report.time).appendTo($report);
 				$('<h3>').text(report.title).appendTo($report);
 			}
