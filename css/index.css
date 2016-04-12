@@ -149,16 +149,16 @@ section#street {
       align-items: flex-start;
       max-width: 600px;
       margin: 3em auto;
-      padding: 2em; }
+      padding: 0.5em; }
       section#street > .chapter > .reports > .report {
         position: relative;
         display: block;
-        -ms-flex: 1 1 80px;
-        -webkit-flex: 1 1 80px;
-        flex: 1 1 80px;
+        -ms-flex: 1 1 120px;
+        -webkit-flex: 1 1 120px;
+        flex: 1 1 120px;
         margin: 1px;
         margin-bottom: 1.5em;
-        border: 3px solid #aaa;
+        border: 3px solid #bbb;
         border-radius: 3px; }
         section#street > .chapter > .reports > .report > .thumbnail {
           display: block;
@@ -170,23 +170,52 @@ section#street {
           background-position: center center; }
         section#street > .chapter > .reports > .report > time, section#street > .chapter > .reports > .report > h3 {
           margin: 0;
-          background: #fff;
           color: #000; }
         section#street > .chapter > .reports > .report > time {
           position: absolute;
           top: 0;
           right: 0;
-          padding: 0.25em 0.5em;
-          font-size: 0.8em;
+          padding: 2px 4px;
+          font-size: 11px;
           font-weight: bold;
-          line-height: 1.0; }
+          line-height: 1;
+          background: #bbb; }
         section#street > .chapter > .reports > .report > h3 {
           display: none;
           position: absolute;
           bottom: 0;
           max-width: 15em;
           padding: 0.5em;
-          font-size: inherit; }
+          font-size: inherit;
+          background: #fff; }
+        section#street > .chapter > .reports > .report.good {
+          border-color: #64FF64; }
+          section#street > .chapter > .reports > .report.good > time {
+            background-color: #64FF64; }
+        section#street > .chapter > .reports > .report.bad {
+          border-color: #FF8080; }
+          section#street > .chapter > .reports > .report.bad > time {
+            background-color: #FF8080; }
+        section#street > .chapter > .reports > .report > .tags {
+          background: #bbb; }
+          section#street > .chapter > .reports > .report > .tags > .tagGroup {
+            display: block;
+            padding: 2px 2px;
+            font-size: 13px;
+            line-height: 1.2; }
+            section#street > .chapter > .reports > .report > .tags > .tagGroup:first-child {
+              padding-top: 3px; }
+            section#street > .chapter > .reports > .report > .tags > .tagGroup:last-child {
+              padding-bottom: 3px; }
+            section#street > .chapter > .reports > .report > .tags > .tagGroup.good {
+              background: #64FF64; }
+            section#street > .chapter > .reports > .report > .tags > .tagGroup.bad {
+              background: #FF8080; }
+            section#street > .chapter > .reports > .report > .tags > .tagGroup > div {
+              display: inline-block;
+              color: #0f0f0f; }
+              section#street > .chapter > .reports > .report > .tags > .tagGroup > div.person {
+                font-weight: bold; }
   section#street > .chapter.expanded > .reports > .report {
     -ms-flex: 1 1 200px;
     -webkit-flex: 1 1 200px;

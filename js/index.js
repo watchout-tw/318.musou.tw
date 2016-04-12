@@ -1,3 +1,5 @@
+var COMMA = '､';
+
 var w = window,
     d = document,
     e = d.documentElement,
@@ -35,6 +37,22 @@ var updateEventDetail = function(data) {
 	}
 }
 
+var parseTags = function(data) {
+	var groups = [];
+	var singles = [];
+	var lines = (data ? data.split(';') : []);
+	for(var i = 0; i < lines.length; i++) {
+		var line = lines[i].split(':');
+		var people = line[0].split(',');
+		var action = line[1];
+		groups.push({people: people, action: action});
+		for(var j = 0; j < people.length; j++) {
+			singles.push({person: people[j], action: action});
+		}
+	}
+	return {groups: groups, singles: singles};
+}
+
 $(function() {
 	// override
 	ww = $('body').width();
@@ -51,13 +69,13 @@ $(function() {
 				'background-image: url(' + "'images/graphics_" + chapter.id + ".svg'" + ');' + (chapter.id == 'civic' ? 'height: 180px;' : '')
 			).appendTo($card);
 		$('<p>').addClass('description').text(chapter.description).appendTo($card);
-		var $expand = $('<div>').addClass('expand').appendTo($chapter);
+/*		var $expand = $('<div>').addClass('expand').appendTo($chapter);
 		var expandText = {expand: '瞭解詳情', collapse: '看完了'};
 		var $expandButton = $('<button>').text(expandText.expand).appendTo($expand).click(function() {
 			var $b = $(this);
 			$b.parents('.chapter').toggleClass('expanded');
 			$b.text(($b.text() == expandText.expand ? expandText.collapse : expandText.expand));
-		});
+		});*/
 		var $reports = $('<div>').addClass('reports').appendTo($chapter);
 		for(var j = 0; j < data.reports.length; j++) {
 			var report = data.reports[j];
@@ -66,6 +84,23 @@ $(function() {
 				$('<div>').addClass('thumbnail').appendTo($report).attr('style', 'background-image: url(' + getThumbnailURL(data.reports[j]) + ')');
 				$('<time>').text(report.time).appendTo($report);
 				$('<h3>').text(report.title).appendTo($report);
+
+				var tags = {
+					good: parseTags(report.tagsGood),
+					neutral: parseTags(report.tagsNeutral),
+					bad: parseTags(report.tagsBad),
+				}
+				var reportClass = (tags.good.singles.length > tags.bad.singles.length ? 'good' : (tags.good.singles.length < tags.bad.singles.length ? 'bad' : 'neutral'));
+				$report.addClass(reportClass);
+
+				var $tags = $('<div>').addClass('tags').appendTo($report);
+				for(let positivity in tags) {
+					for(let group of tags[positivity].groups) {
+						let $group = $('<div>').addClass('tagGroup').addClass(positivity).appendTo($tags);
+						let $person = $('<div>').addClass('person').html(group.people.join(COMMA)).appendTo($group);
+						let $action = $('<div>').addClass('action').html(group.action).appendTo($group);
+					}
+				}
 			}
 		}
 	}

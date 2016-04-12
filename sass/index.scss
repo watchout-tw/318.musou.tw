@@ -18,8 +18,16 @@ $grey: #ccc;
 $darkGrey: #555;
 $graphicsGrey: #4d4d4d;
 
+$colorGood: #64FF64;
+$colorBad: #FF8080;
+$colorNeutral: #bbb;
+
 $maxW: 320px;
 $navH: 88px;
+
+$bodyFontSize: 15px;
+$smallFontSize: 13px;
+$tinyFontSize: 11px;
 
 * {
 	box-sizing: border-box;
@@ -30,7 +38,7 @@ body {
 	width: 100%;
 	max-width: $maxW;
 	font-family: "Helvetica Neue", "PingFang TC", sans-serif;
-	font-size: 15px;
+	font-size: $bodyFontSize;
 	line-height: 1.5;
 	background: $background;
 }
@@ -204,17 +212,17 @@ section#street {
 
 			max-width: 600px;
 			margin: 3em auto;
-			padding: 2em;
+			padding: 0.5em;
 
 			> .report {
 				position: relative;
 				display: block;
-				-ms-flex: 1 1 80px;
-				-webkit-flex: 1 1 80px;
-				flex: 1 1 80px;
+				-ms-flex: 1 1 120px;
+				-webkit-flex: 1 1 120px;
+				flex: 1 1 120px;
 				margin: 1px;
 				margin-bottom: 1.5em;
-				border: 3px solid #aaa;
+				border: 3px solid $colorNeutral;
 				border-radius: 3px;
 
 				> .thumbnail {
@@ -228,17 +236,17 @@ section#street {
 				}
 				> time, > h3 {
 					margin: 0;
-					background: $trueWhite;
 					color: $trueBlack;
 				}
 				> time {
 					position: absolute;
 					top: 0;
 					right: 0;
-					padding: 0.25em 0.5em;
-					font-size: 0.8em;
+					padding: 2px 4px;
+					font-size: $tinyFontSize;
 					font-weight: bold;
-					line-height: 1.0;
+					line-height: 1;
+					background: $colorNeutral;
 				}
 				> h3 {
 					display: none;
@@ -247,6 +255,55 @@ section#street {
 					max-width: 15em;
 					padding: 0.5em;
 					font-size: inherit;
+					background: $trueWhite;
+				}
+				&.good {
+					border-color: $colorGood;
+					> time {
+						background-color: $colorGood;
+					}
+				}
+				&.bad {
+					border-color: $colorBad;
+					> time {
+						background-color: $colorBad;
+					}
+				}
+
+				> .tags {
+					background: $colorNeutral;
+
+					> .tagGroup {
+						display: block;
+						padding: 2px 2px;
+						font-size: $smallFontSize;
+						line-height: 1.2;
+
+						&:first-child {
+							padding-top: 3px;
+						}
+						&:last-child {
+							padding-bottom: 3px;
+						}
+
+						&.good {
+							background: $colorGood;
+						}
+						&.bad {
+							background: $colorBad;
+						}
+						> div {
+							display: inline-block;
+
+							color: $black;
+
+							&.person {
+								font-weight: bold;
+							}
+							&.action {
+							}
+						}
+					}
 				}
 			}
 		}
@@ -277,7 +334,7 @@ section#legislature {
 	> ol {
 		$strokeW: 3px;
 		position: relative;
-		font-size: 13px;
+		font-size: $smallFontSize;
 		> li {
 			position: relative;
 			padding: 0.5em;
@@ -480,7 +537,7 @@ footer {
 		margin: 0 auto;
 		padding: 1em 0;
 		width: 19em;
-		font-size: 13px;
+		font-size: $smallFontSize;
 		text-align: left;
 		a { display: inline-block; }
 	}
