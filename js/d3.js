@@ -1,3 +1,12 @@
+var overlap = function(a, b) {
+	/*
+	http://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
+	if(RectA.Left < RectB.Right && RectA.Right > RectB.Left &&
+		RectA.Top < RectB.Bottom && RectA.Bottom > RectB.Top)
+	*/
+	return (a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top);
+};
+
 d3.selection.prototype.moveToFront = function() {
 	return this.each(function(){
 		this.parentNode.appendChild(this);
@@ -50,13 +59,13 @@ var drawTimelines = function() {
 	// now let us draw
 	var cw = ww;
 	var paddings = {top: 40, right: Math.round(cw/6), bottom: 40, left: Math.round(cw/6)};
-	var ch = (lastDay - firstDay)/1000*0.00003 + paddings.top + paddings.bottom;//months*step;
+	var ch = (lastDay - firstDay)/1000*0.00004 + paddings.top + paddings.bottom;//months*step;
 
 	var xScale = d3.scale.linear().domain([0, 2]).range([0 + paddings.left, cw - paddings.right]);
 	var yScale = d3.scale.linear().domain([firstDay.getTime()/1000, lastDay.getTime()/1000]).range([0 + paddings.top, ch - paddings.bottom]);
 	var colors = d3.scale.category10();
 
-	var svg = d3.select('#timelines').append('svg')
+	var svg = d3.select('#timelines').insert('svg', ':first-child')
 		.attr({
 			'width': cw,
 			'height': ch,
@@ -80,40 +89,127 @@ var drawTimelines = function() {
 		'fill': 'rgba(0, 0, 0, 0.35)'
 	});
 
-	var last = {x: 0, y: 0};
+	// draw events
+	var $timelines = $('#timelines');
+	var $events = $timelines.find('.events');
+	var eventList = {};
 	svg.selectAll('g.event').data(data.events).enter().append('g')
 		.classed('event', true)
 		.each(function(d, i) {
 			var g = d3.select(this);
 			var x = xScale(timelineDict[d.timeline].num);
 			var y = yScale((new Date(d.time)).getTime()/1000);
-			var color = timelineDict[d.timeline].color;
+			var w = 90;
+			var evaluation = evaluateEvent(d);
 
-			var overlapped = (y - last.y < 2*circleR && x == last.x);
-			x += (overlapped ? 2*circleR : 0);
-			g.classed('shifted', overlapped)
-			g.append('circle')
-				.classed('clickable', true)
-				.attr({
-					'cx': x,
-					'cy': y,
-					'r': circleR,
-					'fill': '#ccc',
-					'stroke': color,
-					'stroke-width': circleStrokeW,
-				});
-			last = {x: x, y: y};
+			var $event = makeEventDOM(d, 'event').css({
+				top: y,
+				left: x - w/2,
+			}).appendTo($events);
 
-			g.on('click', function(d) {
-				updateEventDetail(d);
-			});
+			var pos = {};
+			pos.left = $event.position().left;
+			pos.top = $event.position().top;
+			pos.right = pos.left + $event.outerWidth();
+			pos.bottom = pos.top + $event.outerHeight();
+
+			eventList[d.uuid] = {el: $event, pos: pos}; // prepare for layout
+			$event.remove();
 		});
+	console.log(eventList);
 
-	svg.selectAll('g.event.shifted').each(function(d, i) {
-		var style = 'transform: translateX(-' + circleR + 'px);';
-		d3.select(this).attr('style', style);
-		d3.select(this.previousSibling).attr('style', style);
-	});
+	// layout
+	// find overlap
+	var eventIDList = Object.keys(eventList);
+	var links = [];
+	for(var i = 0; i < eventIDList.length; i++) {
+		for(var j = i + 1; j < eventIDList.length; j++) {
+			var a = eventList[eventIDList[i]];
+			var b = eventList[eventIDList[j]];
+			if(overlap(a.pos, b.pos)) {
+				links.push([a.el.attr('id'), b.el.attr('id')]);
+			}
+		}
+	}
+	console.log(links);
+
+	// clustering
+	var groups = [];
+	for(var i = 0; i < links.length; i++) {
+		var k = links[i];
+		var flag = false;
+		for(var j = 0; j < groups.length && !flag; j++) {
+			var g = Object.keys(groups[j]);
+			if(g.indexOf(k[0]) !== -1 || g.indexOf(k[1]) !== -1) {
+				// add link to group
+				groups[j][k[0]] = true;
+				groups[j][k[1]] = true;
+				flag = true;
+			}
+		}
+		if(!flag) {
+			var g = {};
+				g[k[0]] = true;
+				g[k[1]] = true;
+			groups.push(g);
+		}
+	}
+	console.log(groups);
+
+	// layout
+	// some sort of force layout with
+	// ... boundary
+
+	// human intelligence layout
+	// output code to console
+	var lines = [];
+	var offset = {};
+	for(var i = 0; i < groups.length; i++) {
+		lines.push('// group' + i);
+		for(var id in groups[i]) {
+			lines.push('offset["' + id + '"]={x:0,y:0};');
+		}
+	}
+	console.log(lines.join("\n"));
+
+	// copy and paste
+	// use human intelligence to set offset
+	offset["8a0dbe87-4494-43ea-bda8-96c1139574d2"]={x:-45,y:0};
+	offset["72fd6602-2f49-45cf-90cb-3f16df02f539"]={x:+45,y:0};
+	offset["e7f3ea57-f0bb-4da2-b2bd-fb5decc55edd"]={x:-45,y:-25};
+	offset["1dd3b000-5e4a-4fa1-ba58-841e83a90aae"]={x:+45,y:-25};
+	offset["d08f59ee-df30-4fc8-afee-b508d464743c"]={x:-45,y:4};
+	offset["c96f5121-8b18-4bdb-b323-abb85f0bbf09"]={x:+45,y:4};
+	offset["ba96f02e-7ae2-497e-88cc-d3af1a1aba3b"]={x:0,y:0};
+	offset["2c869d37-5974-418e-b509-fea1716db3de"]={x:-180,y:0};
+	offset["e61c8eee-9b43-476e-ade6-60efe403a0e5"]={x:-90,y:0};
+
+	// apply offset
+	for(var id in offset) {
+		eventList[id].pos.top += offset[id].y;
+		eventList[id].pos.bottom += offset[id].y;
+		eventList[id].pos.left += offset[id].x;
+		eventList[id].pos.right += offset[id].x;
+	}
+
+	// extend tail of timeline to show cropped event
+	var bottomID = eventIDList[0];
+	for(var id of eventIDList) {
+		if(eventList[id].pos.bottom > eventList[bottomID].pos.bottom);
+			bottomID = id;
+	}
+	var maxHeight = Math.round(eventList[bottomID].pos.bottom + 10);
+	$timelines.height(maxHeight);
+
+	// insert events onto timeline
+	for(var id in eventList) {
+		var event = eventList[id];
+		eventList[id].el.css({
+			top: event.pos.top,
+			left: event.pos.left,
+		}).appendTo($events);
+	}
+	$events.addClass('ready');
 };
 
 var drawChart = function() {

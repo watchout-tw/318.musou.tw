@@ -26,6 +26,69 @@ a, a:hover, a:active, a:visited {
 span.emphasis {
   font-weight: bold; }
 
+.event {
+  position: relative;
+  display: block;
+  margin: 1px;
+  border: 3px solid #bbb;
+  border-radius: 3px; }
+  .event > .thumbnail {
+    display: block;
+    width: 100%;
+    height: 0%;
+    padding-bottom: 55%;
+    background-color: #ccc;
+    background-size: 200%;
+    background-position: center center; }
+  .event > time, .event > h3 {
+    margin: 0;
+    color: #000; }
+  .event > time {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px 4px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    background: #bbb; }
+  .event > h3 {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    max-width: 15em;
+    padding: 0.5em;
+    font-size: inherit;
+    background: #fff; }
+  .event.good {
+    border-color: #64FF64; }
+    .event.good > time {
+      background-color: #64FF64; }
+  .event.bad {
+    border-color: #FF8080; }
+    .event.bad > time {
+      background-color: #FF8080; }
+  .event > .tags {
+    background: #bbb; }
+    .event > .tags > .tagGroup {
+      display: block;
+      padding: 2px 2px;
+      font-size: 13px;
+      line-height: 1.2; }
+      .event > .tags > .tagGroup:first-child {
+        padding-top: 3px; }
+      .event > .tags > .tagGroup:last-child {
+        padding-bottom: 3px; }
+      .event > .tags > .tagGroup.good {
+        background: #64FF64; }
+      .event > .tags > .tagGroup.bad {
+        background: #FF8080; }
+      .event > .tags > .tagGroup > div {
+        display: inline-block;
+        color: #0f0f0f; }
+        .event > .tags > .tagGroup > div.person {
+          font-weight: bold; }
+
 section#cover {
   display: block;
   padding-bottom: 2em; }
@@ -151,71 +214,10 @@ section#street {
       margin: 3em auto;
       padding: 0.5em; }
       section#street > .chapter > .reports > .report {
-        position: relative;
-        display: block;
         -ms-flex: 1 1 120px;
         -webkit-flex: 1 1 120px;
         flex: 1 1 120px;
-        margin: 1px;
-        margin-bottom: 1.5em;
-        border: 3px solid #bbb;
-        border-radius: 3px; }
-        section#street > .chapter > .reports > .report > .thumbnail {
-          display: block;
-          width: 100%;
-          height: 0%;
-          padding-bottom: 55%;
-          background-color: #ccc;
-          background-size: 200%;
-          background-position: center center; }
-        section#street > .chapter > .reports > .report > time, section#street > .chapter > .reports > .report > h3 {
-          margin: 0;
-          color: #000; }
-        section#street > .chapter > .reports > .report > time {
-          position: absolute;
-          top: 0;
-          right: 0;
-          padding: 2px 4px;
-          font-size: 11px;
-          font-weight: bold;
-          line-height: 1;
-          background: #bbb; }
-        section#street > .chapter > .reports > .report > h3 {
-          display: none;
-          position: absolute;
-          bottom: 0;
-          max-width: 15em;
-          padding: 0.5em;
-          font-size: inherit;
-          background: #fff; }
-        section#street > .chapter > .reports > .report.good {
-          border-color: #64FF64; }
-          section#street > .chapter > .reports > .report.good > time {
-            background-color: #64FF64; }
-        section#street > .chapter > .reports > .report.bad {
-          border-color: #FF8080; }
-          section#street > .chapter > .reports > .report.bad > time {
-            background-color: #FF8080; }
-        section#street > .chapter > .reports > .report > .tags {
-          background: #bbb; }
-          section#street > .chapter > .reports > .report > .tags > .tagGroup {
-            display: block;
-            padding: 2px 2px;
-            font-size: 13px;
-            line-height: 1.2; }
-            section#street > .chapter > .reports > .report > .tags > .tagGroup:first-child {
-              padding-top: 3px; }
-            section#street > .chapter > .reports > .report > .tags > .tagGroup:last-child {
-              padding-bottom: 3px; }
-            section#street > .chapter > .reports > .report > .tags > .tagGroup.good {
-              background: #64FF64; }
-            section#street > .chapter > .reports > .report > .tags > .tagGroup.bad {
-              background: #FF8080; }
-            section#street > .chapter > .reports > .report > .tags > .tagGroup > div {
-              display: inline-block;
-              color: #0f0f0f; }
-              section#street > .chapter > .reports > .report > .tags > .tagGroup > div.person {
-                font-weight: bold; }
+        margin-bottom: 1.5em; }
   section#street > .chapter.expanded > .reports > .report {
     -ms-flex: 1 1 200px;
     -webkit-flex: 1 1 200px;
@@ -283,8 +285,24 @@ svg {
   display: block;
   margin: 0 auto;
   font-size: 12px; }
-  svg circle.clickable:hover {
+  svg .clickable:hover {
     fill: #000; }
+
+#timelines > .events {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+  #timelines > .events.ready {
+    visibility: inherit; }
+  #timelines > .events > .event {
+    display: block;
+    position: absolute;
+    width: 90px; }
+    #timelines > .events > .event > .thumbnail {
+      padding-bottom: 100%; }
 
 #timelines {
   position: relative;
@@ -293,68 +311,13 @@ svg {
   background-repeat: repeat-y; }
   #timelines > svg > g.event {
     cursor: pointer; }
-  #timelines > #eventDetail {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 320px;
-    border: 3px solid #aaa;
-    border-radius: 3px; }
-    #timelines > #eventDetail > a {
-      display: block; }
-      #timelines > #eventDetail > a > .thumbnail {
-        width: 100%;
-        height: 0%;
-        padding-bottom: 55%;
-        background-color: #ccc;
-        background-size: 150%;
-        background-position: center center; }
-      #timelines > #eventDetail > a > time, #timelines > #eventDetail > a > h3 {
-        margin: 0;
-        background: #fff;
-        color: #000; }
-      #timelines > #eventDetail > a > time {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 0.25em 0.5em;
-        font-size: 0.8em;
-        font-weight: bold;
-        line-height: 1.0; }
-      #timelines > #eventDetail > a > h3 {
-        position: absolute;
-        bottom: 0;
-        max-width: 15em;
-        padding: 0.5em;
-        font-size: inherit; }
-    #timelines > #eventDetail > .close {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      overflow: hidden; }
-      #timelines > #eventDetail > .close:before, #timelines > #eventDetail > .close:after {
-        content: ' ';
-        display: block;
-        position: absolute;
-        top: -1px;
-        width: 80px;
-        height: 2px;
-        background: #000; }
-      #timelines > #eventDetail > .close:before {
-        left: 0;
-        transform-origin: top left;
-        transform: rotate(45deg); }
-      #timelines > #eventDetail > .close:after {
-        right: 0;
-        transform-origin: top right;
-        transform: rotate(-45deg); }
-
-#timelines.showEventDetail > #eventDetail {
-  display: block; }
+    #timelines > svg > g.event > circle {
+      fill: #ccc;
+      stroke: #bbb; }
+    #timelines > svg > g.event.good > circle {
+      stroke: #64FF64; }
+    #timelines > svg > g.event.bad > circle {
+      stroke: #FF8080; }
 
 #chart {
   margin: 0; }

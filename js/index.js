@@ -1,5 +1,7 @@
 var COMMA = '､';
 
+// http://stackoverflow.com/a/88094
+
 var w = window,
     d = document,
     e = d.documentElement,
@@ -52,6 +54,34 @@ var parseTags = function(data) {
 	}
 	return {groups: groups, singles: singles};
 }
+var evaluateEvent = function(data) {
+	var tags = {
+		good: parseTags(data.tagsGood),
+		neutral: parseTags(data.tagsNeutral),
+		bad: parseTags(data.tagsBad),
+	}
+	var score = (tags.good.singles.length > tags.bad.singles.length ? 'good' : (tags.good.singles.length < tags.bad.singles.length ? 'bad' : 'neutral'));
+
+	return {tags: tags, tagsCount: tags.good.singles.length + tags.neutral.singles.length + tags.bad.singles.length, score: score};
+}
+var makeEventDOM = function(data, classList) {
+	var $event = $('<a>').attr({id: data.uuid, href: data.link, target: '_blank'}).addClass(classList);
+	$('<div>').addClass('thumbnail').appendTo($event).attr('style', 'background-image: url(' + getThumbnailURL(data) + ')');
+	$('<time>').text(data.time).appendTo($event);
+	$('<h3>').text(data.title).appendTo($event);
+
+	var evaluation = evaluateEvent(data);
+	var $tags = $('<div>').addClass('tags').appendTo($event);
+	for(var score in evaluation.tags) {
+		for(var group of evaluation.tags[score].groups) {
+			var $group = $('<div>').addClass('tagGroup').addClass(score).appendTo($tags);
+			var $person = $('<div>').addClass('person').html(group.people.join(COMMA)).appendTo($group);
+			var $action = $('<div>').addClass('action').html(group.action).appendTo($group);
+		}
+	}
+	$event.addClass(evaluation.score);
+	return $event;
+}
 
 $(function() {
 	// override
@@ -80,27 +110,7 @@ $(function() {
 		for(var j = 0; j < data.reports.length; j++) {
 			var report = data.reports[j];
 			if(report.chapter == chapter.id) {
-				var $report = $('<a>').attr({href: report.link, target: '_blank'}).addClass('report').appendTo($reports);
-				$('<div>').addClass('thumbnail').appendTo($report).attr('style', 'background-image: url(' + getThumbnailURL(data.reports[j]) + ')');
-				$('<time>').text(report.time).appendTo($report);
-				$('<h3>').text(report.title).appendTo($report);
-
-				var tags = {
-					good: parseTags(report.tagsGood),
-					neutral: parseTags(report.tagsNeutral),
-					bad: parseTags(report.tagsBad),
-				}
-				var reportClass = (tags.good.singles.length > tags.bad.singles.length ? 'good' : (tags.good.singles.length < tags.bad.singles.length ? 'bad' : 'neutral'));
-				$report.addClass(reportClass);
-
-				var $tags = $('<div>').addClass('tags').appendTo($report);
-				for(let positivity in tags) {
-					for(let group of tags[positivity].groups) {
-						let $group = $('<div>').addClass('tagGroup').addClass(positivity).appendTo($tags);
-						let $person = $('<div>').addClass('person').html(group.people.join(COMMA)).appendTo($group);
-						let $action = $('<div>').addClass('action').html(group.action).appendTo($group);
-					}
-				}
+				makeEventDOM(report, 'event report').appendTo($reports);
 			}
 		}
 	}
